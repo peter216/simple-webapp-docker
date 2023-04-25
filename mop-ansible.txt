@@ -1,0 +1,38 @@
+# In docker dir
+docker build --tag ubuntu23-ssh-enabled .
+docker run -it -d ubuntu23-ssh-enabled
+ansible -m ping -i inventory.txt target*
+
+# ------------------------
+
+apt-get update
+apt-get install -y python3 python3-setuptools python3-dev build-essential python3-pip python3-mysqldb
+apt-get install -y mysql-server mysql-client
+# apt-get install -y python3-flask
+apt-get install -y python3.11-venv
+
+service mysql start
+mysql -u root -p
+
+
+mysql> CREATE DATABASE employee_db;
+mysql> CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'Passw0rd';
+mysql> GRANT ALL ON *.* to 'db_user'@'localhost';
+mysql> USE employee_db;
+mysql> CREATE TABLE employees (name VARCHAR(20));
+mysql> INSERT INTO employees VALUES ('JOHN');
+
+python3 -m venv ~/VENV/
+source ~/VENV/bin/activate
+pip install flask-mysql, cryptography
+
+# Copy app.py or download it from source repository
+wget https://raw.githubusercontent.com/mmumshad/simple-webapp/master/app.py
+
+FLASK_APP=app.py flask run --host=0.0.0.0
+
+# Open a browser and go to URL
+
+wget -q '127.0.0.1:5000'; cat index.html; echo
+wget -q '127.0.0.1:5000/how are you'; cat how\ are\ you; echo
+wget -q '127.0.0.1:5000/read from database'; cat read\ from\ database; echo
