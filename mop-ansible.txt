@@ -24,7 +24,7 @@ mysql> INSERT INTO employees VALUES ('JOHN');
 
 python3 -m venv ~/VENV/
 source ~/VENV/bin/activate
-pip install flask-mysql, cryptography
+pip install flask-mysql cryptography
 
 # Copy app.py or download it from source repository
 wget https://raw.githubusercontent.com/mmumshad/simple-webapp/master/app.py
