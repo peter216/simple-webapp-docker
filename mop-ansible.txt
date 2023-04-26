@@ -1,5 +1,6 @@
 # In docker dir
 docker build --tag ubuntu23-ssh-enabled .
+# x3
 docker run -it -d ubuntu23-ssh-enabled
 ansible -m ping -i inventory.txt target*
 
